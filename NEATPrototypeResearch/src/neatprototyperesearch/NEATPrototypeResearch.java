@@ -21,7 +21,9 @@ import org.encog.neural.networks.training.TrainingSetScore;
 import org.encog.util.simple.EncogUtility;
 
 /**
- *
+ * Based on code from:
+ * https://github.com/encog/encog-java-examples/blob/master/src/main/java/org/encog/examples/neural/neat/XORNEAT.java
+ * Altered activation function to relu and displayed internal structure.
  * @author sean
  */
 public class NEATPrototypeResearch {
