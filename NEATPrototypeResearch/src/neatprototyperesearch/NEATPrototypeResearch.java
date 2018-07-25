@@ -14,6 +14,9 @@ import org.encog.ml.ea.train.EvolutionaryAlgorithm;
 import org.encog.neural.neat.NEATNetwork;
 import org.encog.neural.neat.NEATPopulation;
 import org.encog.neural.neat.NEATUtil;
+import org.encog.neural.neat.training.NEATGenome;
+import org.encog.neural.neat.training.NEATLinkGene;
+import org.encog.neural.neat.training.NEATNeuronGene;
 import org.encog.neural.networks.training.TrainingSetScore;
 import org.encog.util.simple.EncogUtility;
 
@@ -52,10 +55,31 @@ public class NEATPrototypeResearch {
 
 		NEATNetwork network = (NEATNetwork)train.getCODEC().decode(train.getBestGenome());
 
+                
 		// test the neural network
 		System.out.println("Neural Network Results:");
 		EncogUtility.evaluate(network, trainingSet);
-		
+                
+                System.out.println("Architecture of best genome(Nerual network) in population");
+		final NEATGenome neatGenome = (NEATGenome) train.getBestGenome();
+                
+                System.out.println("Nodes");
+                for(NEATNeuronGene node : neatGenome.getNeuronsChromosome() )
+                {
+                    System.out.println("ID :"+node.getId());
+                    System.out.println("Type :"+node.getNeuronType());
+                    System.out.println();
+                }
+                System.out.println("Links");
+                
+                for(NEATLinkGene link : neatGenome.getLinksChromosome())
+                {
+                    System.out.println("ID : "+link.getId());
+                    System.out.println("Connection : "+link.getFromNeuronID()+" ==> "+link.getToNeuronID());
+                    System.out.println();
+                }
+                
+                
 		Encog.getInstance().shutdown();
     }
     
